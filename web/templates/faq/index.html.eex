@@ -1,0 +1,28 @@
+<h2>Listing faqs</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for faq <- @faqs do %>
+    <tr>
+      <td><%= faq.question %></td>
+      <td><%= faq.answer %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: faq_path(@conn, :show, faq), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: faq_path(@conn, :edit, faq), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: faq_path(@conn, :delete, faq), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New faq", to: faq_path(@conn, :new) %>
