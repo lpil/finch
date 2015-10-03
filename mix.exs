@@ -54,7 +54,7 @@ defmodule Finch.Mixfile do
       {:ex_spec, "~> 0.3", only: :test},
 
       # Code linter
-      {:dogma, only: :dev},
+      {:dogma, only: ~w(dev test)a},
       # Automatic test runner
       {:mix_test_watch, only: :dev},
     ]
