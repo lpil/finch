@@ -16,6 +16,7 @@ defmodule Finch.ModelCase do
 
   using do
     quote do
+      use ExSpec
       alias Finch.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
