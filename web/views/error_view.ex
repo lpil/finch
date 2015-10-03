@@ -1,4 +1,11 @@
 defmodule Finch.ErrorView do
+  @moduledoc """
+  Template functions and helper methods for views expressing application
+  failure to the user.
+
+  Obviously this will never get used.
+  """
+
   use Finch.Web, :view
 
   def render("404.html", _assigns) do

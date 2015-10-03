@@ -1,4 +1,8 @@
 defmodule Finch.UserSocket do
+  @moduledoc """
+  Unsure. I don't know how channels work yet.
+  """
+
   use Phoenix.Socket
 
   ## Channels
@@ -23,7 +27,8 @@ defmodule Finch.UserSocket do
     {:ok, socket}
   end
 
-  # Socket id's are topics that allow you to identify all sockets for a given user:
+  # Socket id's are topics that allow you to identify all sockets for a given
+  # user:
   #
   #     def id(socket), do: "users_socket:#{socket.assigns.user_id}"
   #

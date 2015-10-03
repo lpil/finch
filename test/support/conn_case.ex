@@ -18,7 +18,6 @@ defmodule Finch.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use ExSpec
       use Phoenix.ConnTest
 
       alias Finch.Repo
