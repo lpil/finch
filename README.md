@@ -1,6 +1,8 @@
 Finch
 =====
 
+A nimble content API!
+
 [![Build Status](https://travis-ci.org/lpil/finch.svg?branch=master)](https://travis-ci.org/lpil/finch)
 
 ## Setup
