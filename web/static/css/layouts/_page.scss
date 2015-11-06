@@ -1,0 +1,13 @@
+.page__container {
+  @extend .mdl-layout;
+  @extend .mdl-js-layout;
+  @extend .mdl-layout--fixed-header;
+}
+
+.page__content {
+  @extend .mdl-layout__content;
+}
+
+.page__header {
+  @extend .mdl-layout__header;
+}
