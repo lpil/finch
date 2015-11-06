@@ -9,9 +9,6 @@ config :finch, Finch.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Set a higher stacktrace during test
-config :phoenix, :stacktrace_depth, 20
-
 # Configure your database
 config :finch, Finch.Repo,
   adapter: Ecto.Adapters.Postgres,

@@ -1,8 +1,4 @@
 defmodule Finch do
-  @moduledoc """
-  Finch. A nimble content API.
-  """
-
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html

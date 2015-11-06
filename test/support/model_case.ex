@@ -16,7 +16,6 @@ defmodule Finch.ModelCase do
 
   using do
     quote do
-      use ExSpec
       alias Finch.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
@@ -40,12 +39,12 @@ defmodule Finch.ModelCase do
   Given a User model that lists `:name` as a required field and validates
   `:password` to be safe, it would return:
 
-      iex> errors_on(%User{}, password: "password")
+      iex> errors_on(%User{}, %{password: "password"})
       [password: "is unsafe", name: "is blank"]
 
   You could then write your assertion like:
 
-      assert {:password, "unsafe"} in errors_on(%User{}, password: "password")
+      assert {:password, "is unsafe"} in errors_on(%User{}, %{password: "password"})
 
   You can also create the changeset manually and retrieve the errors
   field directly:

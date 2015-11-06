@@ -1,8 +1,4 @@
 defmodule Finch.Endpoint do
-  @moduledoc """
-  Application HTTP entry point.
-  """
-
   use Phoenix.Endpoint, otp_app: :finch
 
   socket "/socket", Finch.UserSocket
@@ -37,7 +33,7 @@ defmodule Finch.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_finch_key",
-    signing_salt: "cicp3Clo"
+    signing_salt: "lwWFWI9X"
 
   plug Finch.Router
 end

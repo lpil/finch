@@ -20,6 +20,8 @@ defmodule Finch.Web do
     quote do
       use Ecto.Model
 
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 
@@ -40,11 +42,7 @@ defmodule Finch.Web do
       use Phoenix.View, root: "web/templates"
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [
-        get_csrf_token: 0,
-        get_flash: 2,
-        view_module: 1,
-      ]
+      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
@@ -66,7 +64,6 @@ defmodule Finch.Web do
       alias Finch.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 1, from: 2]
-
     end
   end
 
