@@ -31,9 +31,16 @@ defmodule Finch.PersonControllerTest do
     assert Repo.get_by(Person, @valid_attrs)
   end
 
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+  test "renders errors when data is invalid", %{conn: conn} do
     conn = post conn, person_path(conn, :create), person: @invalid_attrs
     assert html_response(conn, 200) =~ "New person"
+  end
+
+  test "does not create resource when data is invalid", %{conn: conn} do
+    conn = post conn, person_path(conn, :create), person: @invalid_attrs
+    assert html_response(conn, 200) =~ "New person"
+    count = Repo.one from p in Person, select: count(p.id)
+    assert count == 0
   end
 
   test "shows chosen resource", %{conn: conn} do
@@ -54,14 +61,18 @@ defmodule Finch.PersonControllerTest do
     assert html_response(conn, 200) =~ "Edit person"
   end
 
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+  test """
+  updates chosen resource and redirects when data is valid
+  """, %{conn: conn} do
     person = Repo.insert! %Person{}
     conn = put conn, person_path(conn, :update, person), person: @valid_attrs
     assert redirected_to(conn) == person_path(conn, :show, person)
     assert Repo.get_by(Person, @valid_attrs)
   end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+  test """
+  does not update chosen resource and renders errors when data is invalid
+  """, %{conn: conn} do
     person = Repo.insert! %Person{}
     conn = put conn, person_path(conn, :update, person), person: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit person"

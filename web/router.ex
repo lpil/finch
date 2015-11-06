@@ -18,9 +18,12 @@ defmodule Finch.Router do
   end
 
   scope "/", Finch do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
+    resources "/bundles", BundleController, only: ~w(new index create)a
+
+    # TODO: Remove
     resources "/people", PersonController
   end
 

@@ -1,0 +1,9 @@
+<h2>Bundles</h2>
+
+<%# <%= %>
+<%#   render "form.html", changeset: @changeset, %>
+<%#                       action: person_path(@conn, :create) %>
+<%# % > %>
+
+<p><%= link "New Bundle", to: bundle_path(@conn, :new) %></p>
+<p><%= link "Back", to: "/" %></p>
