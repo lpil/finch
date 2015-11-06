@@ -5,7 +5,7 @@ defmodule Finch.BundleController do
   use Finch.Web, :controller
   alias Finch.Bundle
 
-  # plug :scrub_params, "bundle" when action in [:create, :update]
+  plug :scrub_params, "bundle" when action in [:create] #, :update]
 
   def index(conn, _params) do
     render conn, "index.html", bundles: Bundle |> Repo.all
@@ -15,7 +15,20 @@ defmodule Finch.BundleController do
     render conn, "new.html", changeset: Bundle.changeset
   end
 
-  def create(_conn, _params) do
-    raise NotImplementedError
+  def create(conn, %{"bundle" => params}) do
+    %Bundle{}
+    |> Bundle.changeset(params)
+    |> Repo.insert
+    |> case do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Bundle created successfully.")
+        |> redirect(to: bundle_path(conn, :index))
+
+      {:error, changeset} ->
+        conn
+        |> put_flash(:info, "Bundle created successfully.")
+        |> redirect(to: bundle_path(conn, :index))
+    end
   end
 end
