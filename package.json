@@ -1,5 +1,6 @@
 {
   "repository": {
+    "license": "MIT"
   },
   "dependencies": {
     "brunch": "^1.8.5",
@@ -8,5 +9,8 @@
     "css-brunch": ">= 1.0 < 1.8",
     "javascript-brunch": ">= 1.0 < 1.8",
     "uglify-js-brunch": ">= 1.0 < 1.8"
+  },
+  "devDependencies": {
+    "sass-brunch": "^1.9.1"
   }
 }
