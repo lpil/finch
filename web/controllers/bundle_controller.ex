@@ -28,7 +28,7 @@ defmodule Finch.BundleController do
       {:error, changeset} ->
         conn
         |> put_flash(:info, "Bundle created successfully.")
-        |> redirect(to: bundle_path(conn, :index))
+        |> render "new.html", changeset: changeset
     end
   end
 end

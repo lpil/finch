@@ -40,9 +40,10 @@ defmodule Finch.BundleControllerTest do
     assert Bundle |> Repo.get_by(@attrs)
   end
 
-  test "POST create renders errors when not ok", %{conn: conn} do
-    conn = post conn, person_path(conn, :create), person: @invalid_attrs
-    assert html_response(conn, 200) =~ "New person"
+  test "POST create renders new with errors when not ok", %{conn: conn} do
+    conn = post conn, bundle_path(conn, :create), bundle: @invalid_attrs
+    assert html_response(conn, 200) =~ "New bundle"
+    assert html_response(conn, 200) =~ "be blank"
   end
 
   test "POST create doesn't persist when not ok", %{conn: conn} do
