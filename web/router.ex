@@ -1,4 +1,8 @@
 defmodule Finch.Router do
+  @moduledoc """
+  Where it all begins. Mega exciting.
+  """
+
   use Finch.Web, :router
 
   pipeline :browser do

@@ -1,4 +1,5 @@
 defmodule Finch.ErrorView do
+  @moduledoc false
   use Finch.Web, :view
 
   def render("404.html", _assigns) do

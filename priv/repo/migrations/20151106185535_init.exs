@@ -7,9 +7,13 @@ defmodule Finch.Repo.Migrations.CreatePerson do
       add :email, :string
       add :bio, :string
       add :number_of_pets, :integer
-
       timestamps
     end
 
+    create table(:bundles) do
+      add :name, :string
+      timestamps
+    end
+    create unique_index(:bundles, [:name])
   end
 end

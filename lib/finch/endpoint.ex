@@ -1,4 +1,6 @@
 defmodule Finch.Endpoint do
+  @moduledoc false
+
   use Phoenix.Endpoint, otp_app: :finch
 
   socket "/socket", Finch.UserSocket

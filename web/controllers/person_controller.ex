@@ -1,4 +1,5 @@
 defmodule Finch.PersonController do
+  @moduledoc false
   use Finch.Web, :controller
 
   alias Finch.Person

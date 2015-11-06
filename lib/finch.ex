@@ -1,4 +1,8 @@
 defmodule Finch do
+  @moduledoc """
+  Finch! Because Elixir, basically.
+  """
+
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html

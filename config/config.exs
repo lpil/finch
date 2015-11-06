@@ -9,7 +9,8 @@ use Mix.Config
 config :finch, Finch.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "9oZ+ikVKXeJgs6pbgg+YJCFyJdnrnFO0VcTDGQdJVXlriLJXheI2JtDGeRvZ55N6",
+  secret_key_base:
+    "9oZ+ikVKXeJgs6pbgg+YJCFyJdnrnFO0VcTDGQdJVXlriLJXheI2JtDGeRvZ55N6",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Finch.PubSub,
            adapter: Phoenix.PubSub.PG2]

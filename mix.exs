@@ -52,7 +52,8 @@ defmodule Finch.Mixfile do
 
   defp aliases do
     [
-      "ecto.setup": ~w[ecto.create ecto.migrate run priv/repo/seeds.exs],
+      "ecto.seed": ["run priv/repo/seeds.exs"],
+      "ecto.setup": ~w[ecto.create ecto.migrate ecto.seed],
       "ecto.reset": ~w[ecto.drop ecto.setup],
     ]
   end

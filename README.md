@@ -27,3 +27,9 @@ You may need to ensure the `postgres` database user has the password
 ```sql
 CREATE ROLE postgres LOGIN;
 ```
+
+## Notes
+
+* [Testing Validation][testing-validations]
+
+[testing-validations]: https://medium.com/@diamondgfx/testing-validations-in-elixir-and-ecto-677bd8a071a1

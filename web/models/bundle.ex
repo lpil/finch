@@ -1,20 +1,16 @@
-defmodule Finch.Person do
+defmodule Finch.Bundle do
   @moduledoc """
-  Example model.
+  A bundle of products that may be owned by a person. Rad.
   """
 
   use Finch.Web, :model
 
-  schema "people" do
+  schema "bundles" do
     field :name, :string
-    field :email, :string
-    field :bio, :string
-    field :number_of_pets, :integer
-
     timestamps
   end
 
-  @required_fields ~w(name email bio number_of_pets)
+  @required_fields ~w(name)
   @optional_fields ~w()
 
   @doc """
@@ -26,5 +22,7 @@ defmodule Finch.Person do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_length(:name, min: 4)
+    |> unique_constraint(:name)
   end
 end

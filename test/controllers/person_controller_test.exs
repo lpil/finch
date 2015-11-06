@@ -2,7 +2,12 @@ defmodule Finch.PersonControllerTest do
   use Finch.ConnCase
 
   alias Finch.Person
-  @valid_attrs %{bio: "some content", email: "some content", name: "some content", number_of_pets: 42}
+  @valid_attrs %{
+    bio: "some content",
+    email: "some content",
+    name: "some content",
+    number_of_pets: 42
+  }
   @invalid_attrs %{}
 
   setup do
