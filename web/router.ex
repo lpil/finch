@@ -17,6 +17,7 @@ defmodule Finch.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/people", PersonController
   end
 
   # Other scopes may use custom stacks.
