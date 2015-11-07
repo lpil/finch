@@ -8,6 +8,12 @@ defmodule Finch.BundleTest do
   @attrs %{ display_name: "Potion Set", code: "potion-set" }
 
   @tag :async
+  test "parameterises to the code attribute" do
+    param = %Bundle{ code: "toasty" } |> Phoenix.Param.to_param
+    assert param == "toasty"
+  end
+
+  @tag :async
   test "changeset can be valid" do
     changeset = Bundle.changeset(%Bundle{}, @attrs)
     assert changeset.valid?

@@ -2,8 +2,9 @@ defmodule Finch.Bundle do
   @moduledoc """
   A bundle of products that may be owned by a person. Rad.
   """
-
   use Finch.Web, :model
+
+  @derive { Phoenix.Param, key: :code }
 
   schema "bundles" do
     field :display_name, :string
