@@ -4,8 +4,6 @@
       <%= page_title(@conn, assigns) %>
     </span>
     <div class="mdl-layout-spacer"></div>
-    <nav class="mdl-navigation">
-      <%= render "_links.html", conn: @conn %>
-    </nav>
+    Hi there!
   </div>
 </header>

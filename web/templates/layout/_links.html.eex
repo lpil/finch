@@ -1,3 +1,0 @@
-<a class="mdl-navigation__link" href="<%= bundle_path(@conn, :index) %>">
-  Bundles
-</a>
