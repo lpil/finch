@@ -21,7 +21,7 @@ defmodule Finch.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/bundles", BundleController, only: ~w(new index create)a
+    resources "/bundles", BundleController, only: ~w(new index show create)a
 
     # TODO: Remove
     resources "/people", PersonController

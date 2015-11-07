@@ -10,15 +10,34 @@ defmodule Finch.BundleControllerTest do
     {:ok, conn: conn}
   end
 
-  test "GET index renders", %{conn: conn} do
+  test "GET index renders list of products", %{conn: conn} do
+    %Bundle{} |> Bundle.changeset(@attrs) |> Repo.insert!
     conn = get conn, bundle_path(conn, :index)
-    assert html_response(conn, 200) =~ "Bundles"
+    body = html_response(conn, 200)
+    assert body =~ "Bundles"
+    assert body =~ @attrs.display_name
+    assert body =~ @attrs.code
   end
 
 
   test "GET new renders", %{conn: conn} do
     conn = get conn, bundle_path(conn, :new)
     assert html_response(conn, 200) =~ "New bundle"
+    assert html_response(conn, 200) =~ "Submit"
+  end
+
+
+  test "GET show renders 404 with an unknown bundle", %{conn: conn} do
+    conn = get conn, bundle_path(conn, :show, %Bundle{ code: "123" })
+    assert html_response(conn, 404) =~ "Page not found"
+  end
+
+  test "GET show renders bundle details", %{conn: conn} do
+    bundle = %Bundle{} |> Bundle.changeset(@attrs) |> Repo.insert!
+    conn = get conn, bundle_path(conn, :show, bundle)
+    body = html_response(conn, 200)
+    assert body =~ bundle.display_name
+    assert body =~ bundle.code
   end
 
 
@@ -29,6 +48,7 @@ defmodule Finch.BundleControllerTest do
 
   @tag :skip
   test "POST create displays info flash when ok", %{conn: conn} do
+    # TODO: Figure out how to test the flash
     post conn, bundle_path(conn, :create), bundle: @attrs
     assert conn |> fetch_session |> get_session(:current_user)
     assert get_flash(conn, :info) =~ "Bundle created"

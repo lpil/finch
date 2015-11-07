@@ -10,10 +10,12 @@
     <%= for bundle <- @bundles do %>
       <tr>
         <td class="non-numeric">
-          <%= bundle.display_name %>
+          <%= link bundle.display_name, to: bundle_path(@conn, :show, bundle) %>
         </td>
         <td class="non-numeric">
-          <code><%= bundle.code %></code>
+          <code>
+            <%= link bundle.code, to: bundle_path(@conn, :show, bundle) %>
+          </code>
         </td>
         <td class="non-numeric">
           <%= length bundle.products %>

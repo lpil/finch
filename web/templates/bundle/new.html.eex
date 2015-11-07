@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div>
+<div class="foot-nav">
   <%= submit "Submit" %>
   <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>
 </div>

@@ -3,7 +3,7 @@ defmodule Finch.LayoutView do
   use Finch.Web, :view
 
   def page_title(conn, assigns) do
-    # TODO: Move adding the view template name to a plug.
+    # TODO: Work out how to do this nicely
     assigns = assigns |> Dict.put :view_template, view_template(conn)
     conn
     |> view_module

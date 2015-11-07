@@ -4,6 +4,7 @@ defmodule Finch.BundleController do
   """
   use Finch.Web, :controller
   alias Finch.Bundle
+  alias Finch.ErrorView
 
   plug :scrub_params, "bundle" when action in [:create] #, :update]
 
@@ -14,6 +15,19 @@ defmodule Finch.BundleController do
 
   def new(conn, _params) do
     render conn, "new.html", changeset: Bundle.changeset
+  end
+
+  def show(conn, %{ "id" => id }) do
+    Bundle
+    |> Repo.get_by( code: id )
+    |> case do
+      nil ->
+        conn
+        |> put_status(404)
+        |> render ErrorView, "404.html"
+      bundle ->
+        render conn, "show.html", bundle: bundle
+    end
   end
 
   def create(conn, %{"bundle" => params}) do
