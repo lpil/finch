@@ -15,6 +15,8 @@ defmodule Finch.Bundle do
   end
 
 
+  # TODO: Make it so display name and code can only be set on create
+
   @required_fields ~w(display_name code)
   @optional_fields ~w()
 

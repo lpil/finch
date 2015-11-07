@@ -8,7 +8,8 @@ defmodule Finch.BundleController do
   plug :scrub_params, "bundle" when action in [:create] #, :update]
 
   def index(conn, _params) do
-    render conn, "index.html", bundles: Bundle |> Repo.all
+    bundles = Bundle |> Repo.all |> Repo.preload(:products)
+    render conn, "index.html", bundles: bundles
   end
 
   def new(conn, _params) do

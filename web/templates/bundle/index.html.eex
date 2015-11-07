@@ -3,6 +3,7 @@
     <tr>
       <th class="non-numeric">Name</th>
       <th class="non-numeric">Code</th>
+      <th class="non-numeric">Products</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,9 @@
         </td>
         <td class="non-numeric">
           <code><%= bundle.code %></code>
+        </td>
+        <td class="non-numeric">
+          <%= length bundle.products %>
         </td>
       </tr>
     <% end %>
