@@ -13,8 +13,12 @@
   <% end %>
 
   <div>
-    <%= label f, :name, "Name" %>
-    <%= text_input f, :name %>
+    <%= label f, :display_name, "Display Name" %>
+    <%= text_input f, :display_name %>
+  </div>
+  <div>
+    <%= label f, :code, "Code" %>
+    <%= text_input f, :code %>
   </div>
 
   <div>

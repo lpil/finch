@@ -3,7 +3,14 @@
 <ul>
 <%= for bundle <- @bundles do %>
   <li>
-    <%= bundle.name %>
+    <div>
+      <label>Display Name</label>:
+      <%= bundle.display_name %>
+    </div>
+    <div>
+      <label>Code</label>:
+      <code><%= bundle.code %></code>
+    </div>
   </li>
 <% end %>
 </ul>
