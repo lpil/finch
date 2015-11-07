@@ -1,0 +1,6 @@
+<div class="alert--info"  role="alert">
+  <%= get_flash(@conn, :info) %>
+</div>
+<div class="alert--error" role="alert">
+  <%= get_flash(@conn, :error) %>
+</div>

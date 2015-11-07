@@ -25,4 +25,9 @@
 
 @import './vendor/material-design-lite';
 
-@import './layouts/_page.scss';
+@import './layouts/page';
+@import './layouts/foot-nav';
+
+@import './components/tables';
+@import './components/inputs';
+@import './components/buttons';

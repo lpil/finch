@@ -13,19 +13,15 @@
   </head>
 
   <body>
-
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <%= render "_header.html", conn: @conn %>
       <%= render "_drawer.html", conn: @conn %>
+      <%= render "_flashes.html", conn: @conn %>
 
-      <main class="mdl-layout__content">
-        <div class="page-content">
-          <p class="alert--info"  role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert--error" role="alert"><%= get_flash(@conn, :error) %></p>
-
-          <%= @inner %>
-        </div>
+      <main class="page__content">
+        <%= @inner %>
       </main>
+
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

@@ -1,0 +1,12 @@
+.textfield {
+  @extend .mdl-textfield;
+  @extend .mdl-textfield--floating-label;
+}
+
+form {
+  input[type="submit"] {
+    @extend .mdl-button;
+    @extend .mdl-button--raised;
+    @extend .mdl-button--colored;
+  }
+}

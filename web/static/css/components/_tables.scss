@@ -1,0 +1,11 @@
+.data-table {
+  @extend .mdl-data-table;
+  @extend .mdl-js-data-table;
+  @extend .mdl-data-table--selectable;
+  @extend .mdl-shadow--2dp;
+  @extend .is-upgraded;
+
+  .non-numeric {
+    @extend .mdl-data-table__cell--non-numeric;
+  }
+}

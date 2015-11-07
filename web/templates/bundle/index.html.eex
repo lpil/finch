@@ -1,19 +1,27 @@
 <h2>Bundles</h2>
 
-<ul>
-<%= for bundle <- @bundles do %>
-  <li>
-    <div>
-      <label>Display Name</label>:
-      <%= bundle.display_name %>
-    </div>
-    <div>
-      <label>Code</label>:
-      <code><%= bundle.code %></code>
-    </div>
-  </li>
-<% end %>
-</ul>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th class="non-numeric">Name</th>
+      <th class="non-numeric">Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for bundle <- @bundles do %>
+      <tr>
+        <td class="non-numeric">
+          <%= bundle.display_name %>
+        </td>
+        <td class="non-numeric">
+          <code><%= bundle.code %></code>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p><%= link "New Bundle", to: bundle_path(@conn, :new) %></p>
-<p><%= link "Back", to: "/" %></p>
+<nav class="foot-nav">
+  <%= link "New Bundle", to: bundle_path(@conn, :new), class: "button" %>
+  <%= link "Back", to: "/", class: "button" %>
+</nav>

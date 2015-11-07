@@ -27,7 +27,6 @@ defmodule Finch.BundleController do
 
       {:error, changeset} ->
         conn
-        |> put_flash(:info, "Bundle created successfully.")
         |> render "new.html", changeset: changeset
     end
   end
