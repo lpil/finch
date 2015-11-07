@@ -3,8 +3,8 @@ defmodule Finch.BundleControllerTest do
 
   alias Finch.Bundle
 
-  @attrs %{ name: "Battle Net Chest" }
-  @invalid_attrs @attrs |> Dict.delete( :name )
+  @attrs %{ display_name: "Battle Net Chest", code: "bttl-cst" }
+  @invalid_attrs @attrs |> Dict.delete( :display_name )
 
   setup do
     {:ok, conn: conn}

@@ -11,9 +11,11 @@ defmodule Finch.Repo.Migrations.CreatePerson do
     end
 
     create table(:bundles) do
-      add :name, :string
+      add :display_name, :string
+      add :code, :string
       timestamps
     end
-    create unique_index(:bundles, [:name])
+    create unique_index(:bundles, [:display_name])
+    create unique_index(:bundles, [:code])
   end
 end

@@ -6,11 +6,12 @@ defmodule Finch.Bundle do
   use Finch.Web, :model
 
   schema "bundles" do
-    field :name, :string
+    field :display_name, :string
+    field :code, :string
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(display_name code)
   @optional_fields ~w()
 
   @doc """
@@ -25,7 +26,11 @@ defmodule Finch.Bundle do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> validate_length(:name, min: 4)
-    |> unique_constraint(:name)
+
+    |> validate_length(:display_name, min: 4)
+    |> unique_constraint(:display_name)
+
+    |> validate_length(:code, min: 4)
+    |> unique_constraint(:code)
   end
 end
