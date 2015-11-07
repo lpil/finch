@@ -26,17 +26,38 @@ defmodule Finch.BundleTest do
   end
 
   @tag :async
-  test "changeset is invalid with a short display_name" do
-    attrs = Dict.put @attrs, :display_name, "Hi!"
+  test "display name cannot be short" do
+    attrs = Dict.put @attrs, :display_name, "123"
     changeset = Bundle.changeset(%Bundle{}, attrs)
     refute changeset.valid?
+    assert [display_name: _] = changeset.errors
+    attrs = Dict.put @attrs, :display_name, "1234"
+    changeset = Bundle.changeset(%Bundle{}, attrs)
+    assert changeset.valid?
   end
 
   @tag :async
-  test "changeset is invalid with a short code" do
-    attrs = Dict.put @attrs, :code, "hey"
+  test "code cannot be short" do
+    attrs = Dict.put @attrs, :code, "123"
     changeset = Bundle.changeset(%Bundle{}, attrs)
     refute changeset.valid?
+    assert [code: _] = changeset.errors
+    attrs = Dict.put @attrs, :code, "1234"
+    changeset = Bundle.changeset(%Bundle{}, attrs)
+    assert changeset.valid?
+  end
+
+  @tag :async
+  test "code may only contain lowercase alphanumerics and hyphens" do
+    attrs = Dict.put @attrs, :code, "hello-123"
+    changeset = Bundle.changeset(%Bundle{}, attrs)
+    assert changeset.valid?
+    for code <- ["$&*dod1", "[abac]", "HELLO", "what  "] do
+      attrs = Dict.put @attrs, :code, code
+      changeset = Bundle.changeset(%Bundle{}, attrs)
+      refute changeset.valid?, "'#{code}' should be an invalid code"
+      assert [code: _] = changeset.errors
+    end
   end
 
   test "changeset is invalid when display_name is already in use" do

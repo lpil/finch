@@ -31,6 +31,7 @@ defmodule Finch.Bundle do
     |> unique_constraint(:display_name)
 
     |> validate_length(:code, min: 4)
+    |> validate_format(:code, ~r/\A[a-z0-9-]+\z/)
     |> unique_constraint(:code)
   end
 end
