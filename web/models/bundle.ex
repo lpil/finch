@@ -11,8 +11,13 @@ defmodule Finch.Bundle do
     timestamps
   end
 
+
   @required_fields ~w(display_name code)
   @optional_fields ~w()
+
+  @code_regex ~r/\A[a-z0-9-]+\z/
+  @code_fmt_msg "may only contain alphanumerics and hyphens"
+
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -31,7 +36,7 @@ defmodule Finch.Bundle do
     |> unique_constraint(:display_name)
 
     |> validate_length(:code, min: 4)
-    |> validate_format(:code, ~r/\A[a-z0-9-]+\z/)
+    |> validate_format(:code, @code_regex, message: @code_fmt_msg)
     |> unique_constraint(:code)
   end
 end

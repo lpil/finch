@@ -30,6 +30,10 @@ CREATE ROLE postgres LOGIN;
 
 ## Notes
 
+* [Writing a Phoenix blog 1][blog-1]
+* [Writing a Phoenix blog 2][blog-2]
 * [Testing Validation][testing-validations]
 
 [testing-validations]: https://medium.com/@diamondgfx/testing-validations-in-elixir-and-ecto-677bd8a071a1
+[blog-1]: https://medium.com/@diamondgfx/introduction-fe138ac6079d
+[blog-2]: https://medium.com/@diamondgfx/writing-a-blog-engine-in-phoenix-part-2-authorization-814c06fa7c0

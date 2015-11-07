@@ -29,8 +29,8 @@ defmodule Finch.BundleControllerTest do
 
   @tag :skip
   test "POST create displays info flash when ok", %{conn: conn} do
-    # How do I do this?
     post conn, bundle_path(conn, :create), bundle: @attrs
+    assert conn |> fetch_session |> get_session(:current_user)
     assert get_flash(conn, :info) =~ "Bundle created"
   end
 
