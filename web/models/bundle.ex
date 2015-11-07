@@ -9,6 +9,9 @@ defmodule Finch.Bundle do
     field :display_name, :string
     field :code, :string
     timestamps
+
+    has_many :bundle_memberships, Finch.BundleMembership
+    has_many :products, through: [:bundle_memberships, :product]
   end
 
 
