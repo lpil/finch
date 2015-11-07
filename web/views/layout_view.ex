@@ -5,7 +5,9 @@ defmodule Finch.LayoutView do
   def page_title(conn, assigns) do
     # TODO: Move adding the view template name to a plug.
     assigns = assigns |> Dict.put :view_template, view_template(conn)
-    render_existing( view_module(conn), "page_title", assigns )
+    conn
+    |> view_module
+    |> render_existing( "page_title", assigns )
     |> case do
       nil   -> "Finch"
       title -> title
