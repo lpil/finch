@@ -1,28 +1,28 @@
-<h2>New bundle</h2>
-
 <%= form_for @changeset, bundle_path(@conn, :create), fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert--danger">
-      <p>Oops, something went wrong! Please check the errors below:</p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= if @changeset.action do %>
+  <div class="alert--danger">
+    <p>Oops, something went wrong! Please check the errors below:</p>
+    <ul>
+      <%= for {attr, message} <- f.errors do %>
+        <li><%= humanize(attr) %> <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <div class="textfield mdl-textfield mdl-js-textfield">
+<div>
+  <div class="textfield mdl-js-textfield">
     <%= text_input f, :display_name, class: "mdl-textfield__input" %>
     <%= label f, :display_name, "Display Name", class: "mdl-textfield__label" %>
   </div>
-  <div class="textfield mdl-textfield mdl-js-textfield">
+  <div class="textfield mdl-js-textfield">
     <%= text_input f, :code, class: "mdl-textfield__input" %>
     <%= label f, :code, "Code", class: "mdl-textfield__label" %>
   </div>
+</div>
 
-  <div>
-    <%= submit "Submit" %>
-    <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>
-  </div>
+<div>
+  <%= submit "Submit" %>
+  <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>
+</div>
 <% end %>
