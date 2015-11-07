@@ -5,29 +5,34 @@ defmodule Finch.BundleTest do
 
   @attrs %{ display_name: "Potion Set", code: "potion-set" }
 
+  @tag :async
   test "changeset can be valid" do
     changeset = Bundle.changeset(%Bundle{}, @attrs)
     assert changeset.valid?
   end
 
+  @tag :async
   test "changeset is invalid without display_name" do
     attrs = Dict.delete @attrs, :display_name
     changeset = Bundle.changeset(%Bundle{}, attrs)
     refute changeset.valid?
   end
 
+  @tag :async
   test "changeset is invalid without code" do
     attrs = Dict.delete @attrs, :code
     changeset = Bundle.changeset(%Bundle{}, attrs)
     refute changeset.valid?
   end
 
+  @tag :async
   test "changeset is invalid with a short display_name" do
     attrs = Dict.put @attrs, :display_name, "Hi!"
     changeset = Bundle.changeset(%Bundle{}, attrs)
     refute changeset.valid?
   end
 
+  @tag :async
   test "changeset is invalid with a short code" do
     attrs = Dict.put @attrs, :code, "hey"
     changeset = Bundle.changeset(%Bundle{}, attrs)
