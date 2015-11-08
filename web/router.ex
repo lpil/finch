@@ -24,6 +24,8 @@ defmodule Finch.Router do
       resources "/products", ProductController, only: ~w(new create)a
     end
 
+    resources "/products", ProductController, only: ~w(index)a
+
     # TODO: Remove
     resources "/people", PersonController
 

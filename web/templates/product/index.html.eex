@@ -3,22 +3,22 @@
     <tr>
       <th class="non-numeric">Name</th>
       <th class="non-numeric">Code</th>
-      <th>Contained Products</th>
+      <th>Associated Bundles</th>
     </tr>
   </thead>
   <tbody>
-    <%= for bundle <- @bundles do %>
+    <%= for product <- @products do %>
       <tr>
         <td class="non-numeric">
-          <%= link bundle.display_name, to: bundle_path(@conn, :show, bundle) %>
+          <%= product.display_name %>
         </td>
         <td class="non-numeric">
           <code>
-            <%= link bundle.code, to: bundle_path(@conn, :show, bundle) %>
+            <%= product.code %>
           </code>
         </td>
         <td>
-          <%= length bundle.products %>
+          <%= length product.bundles %>
         </td>
       </tr>
     <% end %>
@@ -27,5 +27,4 @@
 
 <nav class="foot-nav">
   <%= link "Back", to: "/", class: "button" %>
-  <%= link "New Bundle", to: bundle_path(@conn, :new), class: "button" %>
 </nav>

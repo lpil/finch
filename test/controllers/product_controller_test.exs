@@ -12,6 +12,17 @@ defmodule Finch.ProductControllerTest do
     {:ok, conn: conn}
   end
 
+
+  test "GET index renders list of products", %{conn: conn} do
+    %Product{} |> Product.changeset(@attrs) |> Repo.insert!
+    conn = get conn, product_path(conn, :index)
+    body = html_response(conn, 200)
+    assert body =~ "Products"
+    assert body =~ @attrs.display_name
+    assert body =~ @attrs.code
+  end
+
+
   test "GET new renders", %{conn: conn} do
     bundle = new_bundle()
     conn = get conn, bundle_product_path(conn, :new, bundle)

@@ -3,12 +3,22 @@ defmodule Finch.ProductController do
   We can CRUD products!
   """
   use Finch.Web, :controller
+  alias Ecto.Query
   alias Finch.Product
   alias Finch.Bundle
   alias Finch.BundleMembership
   alias Finch.ErrorView
 
   plug :scrub_params, "product" when action in [:create] #, :update]
+
+  def index(conn, _params) do
+    products =
+      Product
+      |> Query.order_by([p], [p.display_name])
+      |> Repo.all 
+      |> Repo.preload(:bundles)
+    render conn, "index.html", products: products
+  end
 
   def new(conn, %{ "bundle_id" => bundle_code }) do
     bundle = get_bundle( bundle_code )
