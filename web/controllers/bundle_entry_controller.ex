@@ -6,22 +6,27 @@ defmodule Finch.BundleEntryController do
   alias Finch.Bundle
   alias Finch.BundleEntry
   alias Finch.Item
+  alias Ecto.Query
 
-  plug :scrub_params, "bundle" when action in [:create] #, :update]
+  plug :scrub_params, "bundle_entry" when action in [:create]
 
-  # def create(conn, %{"bundle" => params}) do
-  #   %BundleEntry{}
-  #   |> Bundle.changeset(params)
-  #   |> Repo.insert
-  #   |> case do
-  #     {:ok, _} ->
-  #       conn
-  #       |> put_flash(:info, "Bundle created successfully.")
-  #       |> redirect(to: bundle_path(conn, :index))
+  def create(conn, %{"bundle_id" => bundle_code, "bundle_entry" => x}) do
+    bundle = Bundle |> Repo.get_by!( code: bundle_code )
+    item_id = x["item_id"]
+    attrs   = %{ bundle_id: bundle.id, item_id: item_id }
+    %BundleEntry{}
+    |> BundleEntry.changeset(attrs)
+    |> Repo.insert
+    |> case do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Item added successfully.")
+        |> redirect(to: bundle_path(conn, :show, bundle.code))
 
-  #     {:error, changeset} ->
-  #       conn
-  #       |> render "new.html", changeset: changeset
-  #   end
-  # end
+      {:error, changeset} ->
+        conn
+        |> put_flash(:info, "Cannot add this Item.")
+        |> redirect(to: bundle_path(conn, :show, bundle.code))
+    end
+  end
 end

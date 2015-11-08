@@ -19,7 +19,8 @@
   </ul>
 </div>
 
-
+<%= render Finch.BundleEntryView, "new.html",
+           conn: @conn, bundle: @bundle, changeset: @entry, items: @items %>
 
 <div class="foot-nav">
   <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>

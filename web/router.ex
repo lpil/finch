@@ -13,15 +13,11 @@ defmodule Finch.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", Finch do
     pipe_through :browser
 
     resources "/bundles", BundleController, except: ~w(update edit delete)a do
-      post "/items", BundleEntryController, :create
+      post "/entry", BundleEntryController, :create, as: :entry
     end
     resources "/items", ItemController, only: ~w(index create)a
 
@@ -30,9 +26,4 @@ defmodule Finch.Router do
 
     get "/*path", PageController, :show
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Finch do
-  #   pipe_through :api
-  # end
 end

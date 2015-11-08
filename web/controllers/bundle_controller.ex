@@ -4,9 +4,12 @@ defmodule Finch.BundleController do
   """
   use Finch.Web, :controller
   alias Finch.Bundle
+  alias Finch.BundleEntry
+  alias Finch.Item
   alias Finch.ErrorView
+  alias Ecto.Query
 
-  plug :scrub_params, "bundle" when action in [:create] #, :update]
+  plug :scrub_params, "bundle" when action in [:create]
 
   def index(conn, _params) do
     bundles = Bundle |> Repo.all |> Repo.preload(:items)
@@ -26,8 +29,12 @@ defmodule Finch.BundleController do
         conn
         |> put_status(404)
         |> render ErrorView, "404.html"
+
       bundle ->
-        render conn, "show.html", bundle: bundle
+        items = Repo.all Query.from( i in Item, select: {i.code, i.id} )
+        entry = BundleEntry.changeset
+        attrs = [bundle: bundle, items: items, entry: entry]
+        render conn, "show.html", attrs
     end
   end
 

@@ -23,6 +23,7 @@
   "maxcomplexity" : 8,
   "maxlen"        : 80,
   "esnext"        : true,
+  "browser"       : true,
 
   "globals": {
   }

@@ -1,0 +1,36 @@
+<h4>Add an Item</h4>
+
+<%= form_for @changeset, bundle_entry_path(@conn, :create, @bundle), fn f -> %>
+<%= if @changeset.action do %>
+  <div class="alert--danger">
+    <p>Oops, something went wrong! Please check the errors below:</p>
+    <ul>
+      <%= for {attr, message} <- f.errors do %>
+        <li><%= humanize(attr) %> <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div>
+  <div class="textfield mdl-js-textfield">
+    <%= hidden_input f, :item_id, id: "datalist-reciever" %>
+    <input class="mdl-textfield__input" id="datalist-input" list="datalist-data" type="text">
+    <%= label f, :item_id, "Item", class: "mdl-textfield__label" %>
+  </div>
+</div>
+
+<datalist id="datalist-data">
+  <%= for {item, id} <- @items do %>
+    <option value="<%= item %>"><%= id %></option>
+  <% end %>
+</datalist>
+
+<script type="text/javascript" charset="utf-8">
+window.datalistPage = true;
+</script>
+
+<div class="foot-nav">
+  <%= submit "Submit" %>
+</div>
+<% end %>
