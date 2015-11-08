@@ -26,6 +26,6 @@
 </table>
 
 <nav class="foot-nav">
-  <%= link "New Bundle", to: bundle_path(@conn, :new), class: "button" %>
   <%= link "Back", to: "/", class: "button" %>
+  <%= link "New Bundle", to: bundle_path(@conn, :new), class: "button" %>
 </nav>

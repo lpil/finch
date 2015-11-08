@@ -20,7 +20,9 @@ defmodule Finch.Router do
   scope "/", Finch do
     pipe_through :browser
 
-    resources "/bundles", BundleController, only: ~w(new index show create)a
+    resources "/bundles", BundleController, only: ~w(new index show create)a do
+      resources "/products", ProductController, only: ~w(new create)a
+    end
 
     # TODO: Remove
     resources "/people", PersonController
