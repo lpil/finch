@@ -13,6 +13,9 @@ mix deps.get
 # Install Javascript deps
 npm install
 
+# Start the database
+pg_ctl start
+
 # Create and migrate database
 mix ecto.create
 mix ecto.migrate
