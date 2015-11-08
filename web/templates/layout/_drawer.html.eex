@@ -1,6 +1,6 @@
 <div class="mdl-layout__drawer">
   <span class="mdl-layout-title">
-    Finch
+    <%= link "Finch", to: "/" %>
   </span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="<%= bundle_path(@conn, :index) %>">
