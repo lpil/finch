@@ -3,10 +3,9 @@ defmodule Finch.ProductController do
   We can CRUD products!
   """
   use Finch.Web, :controller
+
   alias Ecto.Query
   alias Finch.Product
-  alias Finch.Bundle
-  alias Finch.BundleMembership
   alias Finch.ErrorView
 
   plug :scrub_params, "product" when action in [:create] #, :update]
@@ -17,33 +16,24 @@ defmodule Finch.ProductController do
       |> Query.order_by([p], [p.display_name])
       |> Repo.all 
       |> Repo.preload(:bundles)
-    render conn, "index.html", products: products
-  end
-
-  def new(conn, %{ "bundle_id" => bundle_code }) do
-    bundle = get_bundle( bundle_code )
     changeset =  Product.changeset
-    render conn, "new.html", changeset: changeset, bundle: bundle
+    render conn, "index.html", products: products, changeset: changeset
   end
 
-  def create(conn, %{ "product" => params, "bundle_id" => bundle_code }) do
-    bundle = get_bundle( bundle_code )
+  def create(conn, %{ "product" => params }) do
     %Product{}
     |> Product.changeset(params)
     |> Repo.insert
     |> case do
       {:ok, product} ->
-        %BundleMembership{ bundle_id: bundle.id, product_id: product.id, }
-        |> Repo.insert!
         conn
         |> put_flash(:info, "Product created successfully.")
-        |> redirect( to: bundle_path(conn, :show, bundle) )
+        |> redirect( to: product_path(conn, :index) )
 
       {:error, changeset} ->
         conn
-        |> render "new.html", changeset: changeset, bundle: bundle
+        |> render "new.html", changeset: changeset
     end
-    redirect conn, to: bundle_path(conn, :show, bundle_code)
   end
 
 

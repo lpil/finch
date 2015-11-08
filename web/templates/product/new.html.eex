@@ -1,8 +1,6 @@
-<div>
-  <label>Creating product for bundle</label>: "<%= @bundle.display_name %>"
-</div>
+<h4>Create a new Product</h4>
 
-<%= form_for @changeset, bundle_product_path(@conn, :create, @bundle), fn f -> %>
+<%= form_for @changeset, product_path(@conn, :create), fn f -> %>
 <%= if @changeset.action do %>
   <div class="alert--danger">
     <p>Oops, something went wrong! Please check the errors below:</p>
@@ -27,6 +25,6 @@
 
 <div class="foot-nav">
   <%= submit "Submit" %>
-  <%= link "Back", to: bundle_path(@conn, :show, @bundle), class: "button--back" %>
 </div>
 <% end %>
+

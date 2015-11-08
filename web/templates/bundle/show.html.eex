@@ -23,5 +23,4 @@
 
 <div class="foot-nav">
   <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>
-  <%= link "Add a product", to: bundle_product_path(@conn, :new, @bundle), class: "button" %>
 </div>

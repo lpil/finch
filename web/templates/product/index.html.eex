@@ -25,6 +25,8 @@
   </tbody>
 </table>
 
+<%= render "new.html", conn: @conn, changeset: @changeset %>
+
 <nav class="foot-nav">
   <%= link "Back", to: "/", class: "button" %>
 </nav>
