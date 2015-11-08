@@ -1,3 +1,8 @@
+<p>
+  An Item is a part of a Bundle. It can have downloadable files, which may be
+  versioned. Examples of Items would be downloadable software, or the manuals
+  for an item of hardware that must be purchased in order to own a bundle.
+</p>
 <table class="data-table">
   <thead>
     <tr>
