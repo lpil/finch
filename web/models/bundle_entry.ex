@@ -27,5 +27,10 @@ defmodule Finch.BundleEntry do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(
+        :bundle,
+        name: "bundle_entries_bundle_id_item_id_index",
+        message: "already contains this item",
+      )
   end
 end
