@@ -20,11 +20,12 @@ defmodule Finch.Router do
   scope "/", Finch do
     pipe_through :browser
 
-    get "/", PageController, :index
     resources "/bundles", BundleController, only: ~w(new index show create)a
 
     # TODO: Remove
     resources "/people", PersonController
+
+    get "/*path", PageController, :show
   end
 
   # Other scopes may use custom stacks.
