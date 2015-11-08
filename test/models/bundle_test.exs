@@ -2,8 +2,8 @@ defmodule Finch.BundleTest do
   use Finch.ModelCase
 
   alias Finch.Bundle
-  alias Finch.BundleMembership
-  alias Finch.Product
+  alias Finch.BundleEntry
+  alias Finch.Item
 
   @attrs %{ display_name: "Potion Set", code: "potion-set" }
 
@@ -94,18 +94,18 @@ defmodule Finch.BundleTest do
     assert changeset.errors == [code: "has already been taken"]
   end
 
-  test "can have many products" do
+  test "can have many items" do
     bundle = %Bundle{} |> Bundle.changeset(@attrs) |> Repo.insert!
-    products = for n <- 1..2 do
+    items = for n <- 1..2 do
       attrs = %{ display_name: "Foo#{n}", code: "foo#{n}" }
-      prod  = %Product{} |> Product.changeset(attrs) |> Repo.insert!
-      attrs = %{ bundle_id: bundle.id, product_id: prod.id }
-      %BundleMembership{}
-      |> BundleMembership.changeset(attrs)
+      prod  = %Item{} |> Item.changeset(attrs) |> Repo.insert!
+      attrs = %{ bundle_id: bundle.id, item_id: prod.id }
+      %BundleEntry{}
+      |> BundleEntry.changeset(attrs)
       |> Repo.insert!
       prod
     end
-    bundle = Bundle |> Repo.one |> Repo.preload(:products)
-    assert bundle.products == products
+    bundle = Bundle |> Repo.one |> Repo.preload(:items)
+    assert bundle.items == items
   end
 end

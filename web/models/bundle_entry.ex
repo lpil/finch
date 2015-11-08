@@ -1,17 +1,17 @@
-defmodule Finch.BundleMembership do
+defmodule Finch.BundleEntry do
   @moduledoc """
-  A join between Bundles and Products.
+  A join between Bundles and Items.
   """
 
   use Finch.Web, :model
 
-  schema "bundle_memberships" do
-    belongs_to :bundle,  Finch.Bundle
-    belongs_to :product, Finch.Product
+  schema "bundle_entries" do
+    belongs_to :bundle, Finch.Bundle
+    belongs_to :item,   Finch.Item
     timestamps
   end
 
-  @required_fields ~w(bundle_id product_id)
+  @required_fields ~w(bundle_id item_id)
   @optional_fields ~w()
 
 

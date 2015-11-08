@@ -9,11 +9,11 @@
 </div>
 
 <div>
-  <label>Products</label>:
+  <label>Items</label>:
   <ul>
-    <%= for product <- @bundle.products do %>
+    <%= for item <- @bundle.items do %>
       <li>
-        <%= product.display_name %>
+        <%= item.display_name %>
       </li>
     <% end %>
   </ul>

@@ -5,8 +5,8 @@ if Mix.env == :dev do
 
   alias Finch.Repo
   alias Finch.Bundle
-  alias Finch.Product
-  alias Finch.BundleMembership
+  alias Finch.Item
+  alias Finch.BundleEntry
 
   #
   # Bundles
@@ -29,101 +29,101 @@ if Mix.env == :dev do
 
 
   #
-  # Products
+  # Items
   #
 
-  product_d1 = %Product{
+  item_d1 = %Item{
     display_name: "Diablo",
     code: "diablo",
   } |> Repo.insert!
 
-  product_d2 = %Product{
+  item_d2 = %Item{
     display_name: "Diablo 2",
     code: "diablo-2",
   } |> Repo.insert!
 
-  product_war3 = %Product{
+  item_war3 = %Item{
     display_name: "Warcraft 3",
     code: "war-3",
   } |> Repo.insert!
 
-  product_cnc = %Product{
+  item_cnc = %Item{
     display_name: "Command & Conquer",
     code: "cnc",
   } |> Repo.insert!
 
-  product_cnc_ra = %Product{
+  item_cnc_ra = %Item{
     display_name: "Command & Conquer: Red Alert",
     code: "cnc-ra",
   } |> Repo.insert!
 
-  product_cnc_ra2 = %Product{
+  item_cnc_ra2 = %Item{
     display_name: "Command & Conquer: Red Alert 2",
     code: "cnc-ra2",
   } |> Repo.insert!
 
-  product_cnc_ts = %Product{
+  item_cnc_ts = %Item{
     display_name: "Command & Conquer: Tiberium Sun",
     code: "cnc-ts",
   } |> Repo.insert!
 
-  product_mi = %Product{
+  item_mi = %Item{
     display_name: "Monkey Island",
     code: "monkey-island",
   } |> Repo.insert!
 
-  product_mi2 = %Product{
+  item_mi2 = %Item{
     display_name: "Monkey Island 2",
     code: "monkey-island-2",
   } |> Repo.insert!
 
 
   #
-  # Bundle Memberships
+  # Bundle Entrys
   #
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_battle.id,
-    product_id: product_d1.id,
+    item_id: item_d1.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_battle.id,
-    product_id: product_d2.id,
+    item_id: item_d2.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_battle.id,
-    product_id: product_war3.id,
+    item_id: item_war3.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_westwood.id,
-    product_id: product_cnc.id,
+    item_id: item_cnc.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_westwood.id,
-    product_id: product_cnc_ra.id,
+    item_id: item_cnc_ra.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_westwood.id,
-    product_id: product_cnc_ra2.id,
+    item_id: item_cnc_ra2.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_westwood.id,
-    product_id: product_cnc_ts.id,
+    item_id: item_cnc_ts.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_monkey.id,
-    product_id: product_mi.id,
+    item_id: item_mi.id,
   } |> Repo.insert!
 
-  %BundleMembership{
+  %BundleEntry{
     bundle_id: bundle_monkey.id,
-    product_id: product_mi2.id,
+    item_id: item_mi2.id,
   } |> Repo.insert!
 end

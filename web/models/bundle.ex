@@ -1,6 +1,6 @@
 defmodule Finch.Bundle do
   @moduledoc """
-  A bundle of products that may be owned by a person. Rad.
+  A bundle of items that may be owned by a person. Rad.
   """
   use Finch.Web, :model
 
@@ -11,8 +11,8 @@ defmodule Finch.Bundle do
     field :code, :string
     timestamps
 
-    has_many :bundle_memberships, Finch.BundleMembership
-    has_many :products, through: [:bundle_memberships, :product]
+    has_many :bundle_entries, Finch.BundleEntry
+    has_many :items, through: [:bundle_entries, :item]
   end
 
 
@@ -46,7 +46,7 @@ defmodule Finch.Bundle do
     |> unique_constraint(:code)
   end
 
-  def preload_products(query \\ __MODULE__) do
-    from q in query, preload: [:products]
+  def preload_items(query \\ __MODULE__) do
+    from q in query, preload: [:items]
   end
 end

@@ -10,8 +10,8 @@ defmodule Finch.BundleView do
     end
   end
 
-  def product_names(products) do
-    products
+  def item_names(items) do
+    items
     |> Enum.map(fn p -> p.display_name end)
     |> Enum.join(", ")
   end

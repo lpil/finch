@@ -1,33 +1,33 @@
-defmodule Finch.ProductController do
+defmodule Finch.ItemController do
   @moduledoc """
-  We can CRUD products!
+  We can CRUD items!
   """
   use Finch.Web, :controller
 
   alias Ecto.Query
-  alias Finch.Product
+  alias Finch.Item
 
-  plug :scrub_params, "product" when action in [:create] #, :update]
+  plug :scrub_params, "item" when action in [:create] #, :update]
 
   def index(conn, _params) do
-    products =
-      Product
+    items =
+      Item
       |> Query.order_by([p], [p.display_name])
       |> Repo.all
       |> Repo.preload(:bundles)
-    changeset =  Product.changeset
-    render conn, "index.html", products: products, changeset: changeset
+    changeset =  Item.changeset
+    render conn, "index.html", items: items, changeset: changeset
   end
 
-  def create(conn, %{ "product" => params }) do
-    %Product{}
-    |> Product.changeset(params)
+  def create(conn, %{ "item" => params }) do
+    %Item{}
+    |> Item.changeset(params)
     |> Repo.insert
     |> case do
-      {:ok, _product} ->
+      {:ok, _item} ->
         conn
-        |> put_flash(:info, "Product created successfully.")
-        |> redirect( to: product_path(conn, :index) )
+        |> put_flash(:info, "Item created successfully.")
+        |> redirect( to: item_path(conn, :index) )
 
       {:error, changeset} ->
         conn

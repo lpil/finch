@@ -1,17 +1,17 @@
-defmodule Finch.Product do
+defmodule Finch.Item do
   @moduledoc """
-  A product is an item in a bundle.
+  A item is an item in a bundle.
   """
 
   use Finch.Web, :model
 
-  schema "products" do
+  schema "items" do
     field :display_name, :string
     field :code, :string
     timestamps
 
-    has_many :bundle_memberships, Finch.BundleMembership
-    has_many :bundles, through: [:bundle_memberships, :bundle]
+    has_many :bundle_entries, Finch.BundleEntry
+    has_many :bundles, through: [:bundle_entries, :bundle]
   end
 
 

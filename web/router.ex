@@ -20,8 +20,10 @@ defmodule Finch.Router do
   scope "/", Finch do
     pipe_through :browser
 
-    resources "/bundles",  BundleController,  only: ~w(new index show create)a
-    resources "/products", ProductController, only: ~w(index create)a
+    resources "/bundles", BundleController, except: ~w(update edit delete)a do
+      post "/items", BundleEntryController, :create
+    end
+    resources "/items", ItemController, only: ~w(index create)a
 
     # TODO: Remove
     resources "/people", PersonController

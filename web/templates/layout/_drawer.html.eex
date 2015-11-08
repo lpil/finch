@@ -6,8 +6,8 @@
     <a class="mdl-navigation__link" href="<%= bundle_path(@conn, :index) %>">
       Bundles
     </a>
-    <a class="mdl-navigation__link" href="<%= product_path(@conn, :index) %>">
-      Products
+    <a class="mdl-navigation__link" href="<%= item_path(@conn, :index) %>">
+      Items
     </a>
   </nav>
 </div>

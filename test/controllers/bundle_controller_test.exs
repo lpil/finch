@@ -10,7 +10,7 @@ defmodule Finch.BundleControllerTest do
     {:ok, conn: conn}
   end
 
-  test "GET index renders list of products", %{conn: conn} do
+  test "GET index renders list of items", %{conn: conn} do
     %Bundle{} |> Bundle.changeset(@attrs) |> Repo.insert!
     conn = get conn, bundle_path(conn, :index)
     body = html_response(conn, 200)

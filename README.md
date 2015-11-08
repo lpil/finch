@@ -7,6 +7,8 @@ A nimble content API!
 
 ## Setup
 
+You'll need Elixir, Node, and Postgresql installed.
+
 ```sh
 # Install Elixir deps
 mix deps.get

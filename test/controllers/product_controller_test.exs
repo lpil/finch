@@ -1,7 +1,7 @@
-defmodule Finch.ProductControllerTest do
+defmodule Finch.ItemControllerTest do
   use Finch.ConnCase
 
-  alias Finch.Product
+  alias Finch.Item
 
   @attrs %{ display_name: "Warcraft 3", code: "war3" }
   @invalid_attrs @attrs |> Dict.delete( :display_name )
@@ -11,37 +11,38 @@ defmodule Finch.ProductControllerTest do
   end
 
 
-  test "GET index renders list of products", %{conn: conn} do
-    %Product{} |> Product.changeset(@attrs) |> Repo.insert!
-    conn = get conn, product_path(conn, :index)
+  test "GET index renders list of items", %{conn: conn} do
+    %Item{} |> Item.changeset(@attrs) |> Repo.insert!
+    conn = get conn, item_path(conn, :index)
     body = html_response(conn, 200)
-    assert body =~ "Products"
+    assert body =~ "Items"
     assert body =~ @attrs.display_name
     assert body =~ @attrs.code
-    assert body =~ "Create a new Product"
+    assert body =~ "Create a new Item"
   end
 
 
   test "POST create redirects to index when ok", %{conn: conn} do
-    conn = post conn, product_path(conn, :create), product: @attrs
-    assert redirected_to(conn) == product_path(conn, :index)
+    conn = post conn, item_path(conn, :create), item: @attrs
+    assert redirected_to(conn) == item_path(conn, :index)
   end
 
   test "POST create persists when ok", %{conn: conn} do
-    refute Product |> Repo.get_by(@attrs)
-    post conn, product_path(conn, :create), product: @attrs
-    assert Product |> Repo.get_by(@attrs)
+    refute Item |> Repo.get_by(@attrs)
+    post conn, item_path(conn, :create), item: @attrs
+    assert Item |> Repo.get_by(@attrs)
   end
 
   test "POST create renders new with errors when not ok", %{conn: conn} do
-    conn = post conn, product_path(conn, :create), product: @invalid_attrs
-    assert html_response(conn, 200) =~ "Products"
-    assert html_response(conn, 200) =~ "be blank"
+    conn = post conn, item_path(conn, :create), item: @invalid_attrs
+    body = html_response(conn, 200)
+    assert body =~ "Items"
+    assert body =~ "be blank"
   end
 
   test "POST create doesn't persist when not ok", %{conn: conn} do
-    post conn, product_path(conn, :create), product: @invalid_attrs
-    count = Repo.one from p in Product, select: count(p.id)
+    post conn, item_path(conn, :create), item: @invalid_attrs
+    count = Repo.one from p in Item, select: count(p.id)
     assert count == 0
   end
 end

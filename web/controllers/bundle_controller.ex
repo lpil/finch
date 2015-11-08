@@ -9,7 +9,7 @@ defmodule Finch.BundleController do
   plug :scrub_params, "bundle" when action in [:create] #, :update]
 
   def index(conn, _params) do
-    bundles = Bundle |> Repo.all |> Repo.preload(:products)
+    bundles = Bundle |> Repo.all |> Repo.preload(:items)
     render conn, "index.html", bundles: bundles
   end
 
@@ -19,7 +19,7 @@ defmodule Finch.BundleController do
 
   def show(conn, %{ "id" => id }) do
     Bundle
-    |> Bundle.preload_products
+    |> Bundle.preload_items
     |> Repo.get_by( code: id )
     |> case do
       nil ->

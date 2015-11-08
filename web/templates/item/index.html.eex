@@ -7,18 +7,18 @@
     </tr>
   </thead>
   <tbody>
-    <%= for product <- @products do %>
+    <%= for item <- @items do %>
       <tr>
         <td class="non-numeric">
-          <%= product.display_name %>
+          <%= item.display_name %>
         </td>
         <td class="non-numeric">
           <code>
-            <%= product.code %>
+            <%= item.code %>
           </code>
         </td>
         <td>
-          <%= length product.bundles %>
+          <%= length item.bundles %>
         </td>
       </tr>
     <% end %>
