@@ -19,6 +19,7 @@ defmodule Finch.BundleController do
 
   def show(conn, %{ "id" => id }) do
     Bundle
+    |> Bundle.preload_products
     |> Repo.get_by( code: id )
     |> case do
       nil ->

@@ -1,4 +1,25 @@
-<b>Code</b>: <%= @bundle.code %>
+<div>
+  <label>Display Name</label>:
+  <code><%= @bundle.display_name %></code>
+</div>
+
+<div>
+  <label>Code</label>:
+  <code><%= @bundle.code %></code>
+</div>
+
+<div>
+  <label>Products</label>:
+  <ul>
+    <%= for product <- @bundle.products do %>
+      <li>
+        <%= product.display_name %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
 
 <div class="foot-nav">
   <%= link "Back", to: bundle_path(@conn, :index), class: "button--back" %>

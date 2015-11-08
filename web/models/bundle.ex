@@ -45,4 +45,8 @@ defmodule Finch.Bundle do
     |> validate_format(:code, @code_regex, message: @code_fmt_msg)
     |> unique_constraint(:code)
   end
+
+  def preload_products(query \\ __MODULE__) do
+    from q in query, preload: [:products]
+  end
 end
