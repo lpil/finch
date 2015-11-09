@@ -18,7 +18,7 @@ defmodule Finch.SessionControllerTest do
   test "GET new renders", %{conn: conn} do
     conn = get conn, session_path(conn, :new)
     body = html_response(conn, 200)
-    assert body =~ "Log in"
+    assert body =~ "Sign in"
     assert body =~ "Password"
     assert body =~ "Email"
   end

@@ -3,6 +3,6 @@ defmodule Finch.SessionView do
   use Finch.Web, :view
 
   def render("page_title", _assigns) do
-    "Log in"
+    "Sign in"
   end
 end
