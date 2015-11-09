@@ -4,7 +4,7 @@ defmodule Finch.UserTest do
   alias Finch.User
   alias Comeonin.Bcrypt
 
-  password = "123456"
+  password = "12345678"
   @attrs %{
     email: "louis@lpil.uk",
     password: password,
@@ -48,6 +48,18 @@ defmodule Finch.UserTest do
     changeset = User.changeset(%User{}, attrs)
     refute changeset.valid?
     assert [password_confirmation: _] = changeset.errors
+  end
+
+  @tag :async
+  test "passwords must be longish" do
+    password = "1234567"
+    attrs =
+      @attrs
+      |> Dict.put(:password, password)
+      |> Dict.put(:password_confirmation, password)
+    changeset = User.changeset(%User{}, attrs)
+    refute changeset.valid?
+    assert [password: _] = changeset.errors
   end
 
   @tag :async

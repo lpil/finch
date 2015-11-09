@@ -41,17 +41,10 @@ defmodule Finch.BundleControllerTest do
   end
 
 
-  test "POST create redirects to index when ok", %{conn: conn} do
+  test "POST create displays info and redirects when ok", %{conn: conn} do
     conn = post conn, bundle_path(conn, :create), bundle: @attrs
-    assert redirected_to(conn) == bundle_path(conn, :index)
-  end
-
-  @tag :skip
-  test "POST create displays info flash when ok", %{conn: conn} do
-    # TODO: Figure out how to test the flash
-    post conn, bundle_path(conn, :create), bundle: @attrs
-    assert conn |> fetch_session |> get_session(:current_user)
     assert get_flash(conn, :info) =~ "Bundle created"
+    assert redirected_to(conn) == bundle_path(conn, :index)
   end
 
   test "POST create persists when ok", %{conn: conn} do

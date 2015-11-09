@@ -38,6 +38,7 @@ defmodule Finch.User do
     |> validate_format(:email, @email_regex)
     |> unique_constraint(:email)
 
+    |> validate_length(:password, min: 8)
     |> validate_confirmation(:password)
     |> hash_password
   end

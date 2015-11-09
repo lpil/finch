@@ -22,8 +22,9 @@ defmodule Finch.ItemControllerTest do
   end
 
 
-  test "POST create redirects to index when ok", %{conn: conn} do
+  test "POST create redirects and assigns flash when ok", %{conn: conn} do
     conn = post conn, item_path(conn, :create), item: @attrs
+    assert get_flash(conn, :info) =~ "Item created"
     assert redirected_to(conn) == item_path(conn, :index)
   end
 
