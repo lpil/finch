@@ -25,9 +25,6 @@ defmodule Finch.Router do
     end
     resources "/items", ItemController, only: ~w(index create)a
 
-    # TODO: Remove
-    resources "/people", PersonController
-
     get "/*path", PageController, :show
   end
 end
