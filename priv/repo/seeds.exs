@@ -3,10 +3,17 @@
 
 if Mix.env == :dev do
 
+  alias Finch.User
   alias Finch.Repo
   alias Finch.Bundle
   alias Finch.Item
   alias Finch.BundleEntry
+
+  %User{
+    email: "a@b.c",
+    password: "123456",
+    password_confirmation: "123456",
+  }
 
   #
   # Bundles
@@ -126,4 +133,6 @@ if Mix.env == :dev do
     bundle_id: bundle_monkey.id,
     item_id: item_mi2.id,
   } |> Repo.insert!
+
+
 end
