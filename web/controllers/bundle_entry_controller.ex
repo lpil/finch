@@ -5,8 +5,6 @@ defmodule Finch.BundleEntryController do
   use Finch.Web, :controller
   alias Finch.Bundle
   alias Finch.BundleEntry
-  alias Finch.Item
-  alias Ecto.Query
 
   plug :scrub_params, "bundle_entry" when action in [:create]
 
@@ -23,7 +21,7 @@ defmodule Finch.BundleEntryController do
         |> put_flash(:info, "Item added successfully.")
         |> redirect(to: bundle_path(conn, :show, bundle.code))
 
-      {:error, changeset} ->
+      {:error, _} ->
         conn
         |> put_flash(:info, "Cannot add this Item.")
         |> redirect(to: bundle_path(conn, :show, bundle.code))
