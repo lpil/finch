@@ -16,7 +16,9 @@ defmodule Finch.Router do
   scope "/", Finch do
     pipe_through :browser
 
-    resources "/session", SessionController, only: ~w(new create)a
+    resources "/session", SessionController,
+      only: ~w(new create delete)a,
+      singleton: true
 
     resources "/bundles", BundleController, except: ~w(update edit delete)a do
       post "/entry", BundleEntryController, :create, as: :entry

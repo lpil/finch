@@ -28,6 +28,14 @@ defmodule Finch.SessionController do
     end
   end
 
+  def delete(conn, _params) do
+    conn
+    |> put_session(:current_user, nil)
+    |> put_flash(:info, "Signed out successfully.")
+    |> redirect(to: "/")
+  end
+
+
   defp valid_sign_in?(user, password) do
     if user do
       Bcrypt.checkpw( password, user.password_digest )

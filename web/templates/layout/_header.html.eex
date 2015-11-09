@@ -4,6 +4,11 @@
       <%= link page_title(@conn, assigns), to: "/" %>
     </span>
     <div class="mdl-layout-spacer"></div>
-    Hi there!
+    <% user = current_user @conn %>
+    <%= if user do %>
+      <%= link "Log out", to: session_path(@conn, :delete), method: :delete %>
+    <%= else %>
+      <%= link "Sign in", to: session_path(@conn, :new) %>
+    <% end %>
   </div>
 </header>

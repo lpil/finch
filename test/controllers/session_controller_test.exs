@@ -23,7 +23,7 @@ defmodule Finch.SessionControllerTest do
     assert body =~ "Email"
   end
 
-  test "POST create adds user to session on success" do
+  test "POST create adds user to session on success", %{conn: conn} do
     user = %User{} |> User.changeset(@user_attrs) |> Repo.insert!
     conn = post conn, session_path(conn, :create), user: @user_attrs
     assert get_session(conn, :current_user) == %{id: user.id}
@@ -31,12 +31,30 @@ defmodule Finch.SessionControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  test "POST create nulls session on failure" do
+  test "POST create nulls session on failure", %{conn: conn} do
     %User{} |> User.changeset(@user_attrs) |> Repo.insert!
     attrs = @user_attrs |> Dict.put( :password, "oops" )
     conn = post conn, session_path(conn, :create), user: attrs
     assert get_session(conn, :current_user) == nil
     assert get_flash(conn, :error) =~ "Invalid"
     assert redirected_to(conn) == session_path(conn, :new)
+  end
+
+  test "POST create nulls session with unknown user", %{conn: conn} do
+    conn = post conn, session_path(conn, :create), user: @user_attrs
+    assert get_session(conn, :current_user) == nil
+    assert get_flash(conn, :error) =~ "Invalid"
+    assert redirected_to(conn) == session_path(conn, :new)
+  end
+
+
+  test "DELETE nulls current_user session", %{conn: conn} do
+    %User{} |> User.changeset(@user_attrs) |> Repo.insert!
+    conn = post conn, session_path(conn, :create), user: @user_attrs
+    assert get_session(conn, :current_user)
+    conn = delete conn, session_path(conn, :delete)
+    refute get_session(conn, :current_user)
+    assert get_flash(conn, :info) == "Signed out successfully."
+    assert redirected_to(conn) == "/"
   end
 end
