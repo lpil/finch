@@ -21,6 +21,12 @@ pg_ctl start
 # Create and migrate database
 mix ecto.create
 mix ecto.migrate
+mix ecto.seed
+MIX_ENV=test mix ecto.create
+MIX_ENV=test mix ecto.migrate
+
+# Run the tests
+mix test.watch
 
 # Run the server
 mix phoenix.server
