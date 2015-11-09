@@ -47,6 +47,14 @@ defmodule Finch.SessionControllerTest do
     assert redirected_to(conn) == session_path(conn, :new)
   end
 
+  test "POST create nulls session with empty values", %{conn: conn} do
+    attrs = %{ email: nil, password: nil }
+    conn = post conn, session_path(conn, :create), user: attrs
+    assert get_session(conn, :current_user) == nil
+    assert get_flash(conn, :error) =~ "Invalid"
+    assert redirected_to(conn) == session_path(conn, :new)
+  end
+
 
   test "DELETE nulls current_user session", %{conn: conn} do
     %User{} |> User.changeset(@user_attrs) |> Repo.insert!
