@@ -17,3 +17,7 @@ config :finch, Finch.Repo,
   database: "finch_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Use weak & fast password hashes in tests
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

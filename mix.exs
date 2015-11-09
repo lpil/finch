@@ -19,7 +19,7 @@ defmodule Finch.Mixfile do
     [
       mod: {Finch, []},
       applications: ~w(
-        phoenix phoenix_html cowboy logger phoenix_ecto postgrex
+        phoenix phoenix_html cowboy logger phoenix_ecto postgrex comeonin
       )a
     ]
   end
@@ -42,6 +42,8 @@ defmodule Finch.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       # Web server
       {:cowboy, "~> 1.0"},
+      # Password hashing
+      {:comeonin, "~> 1.4"},
 
       # Style linting
       {:dogma, "~> 0.0"},

@@ -32,5 +32,12 @@ defmodule Finch.Repo.Migrations.CreatePerson do
       timestamps
     end
     create unique_index(:bundle_entries, [:bundle_id, :item_id])
+
+    create table(:users) do
+      add :email, :string
+      add :password_digest, :string
+      timestamps
+    end
+    create unique_index(:users, [:email])
   end
 end
