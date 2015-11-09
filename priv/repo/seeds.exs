@@ -9,12 +9,6 @@ if Mix.env == :dev do
   alias Finch.Item
   alias Finch.BundleEntry
 
-  %User{
-    email: "a@b.c",
-    password: "123456",
-    password_confirmation: "123456",
-  }
-
   #
   # Bundles
   #
@@ -134,5 +128,17 @@ if Mix.env == :dev do
     item_id: item_mi2.id,
   } |> Repo.insert!
 
+  #
+  # A user to log in with!
+  #
 
+  password = "12345678"
+  user = %User{} |> User.changeset(%{
+    email: "a@b.c",
+    password: password,
+    password_confirmation: password,
+  }) |> Repo.insert!
+
+  IO.puts "Email:    #{user.email}"
+  IO.puts "Password: #{password}"
 end
